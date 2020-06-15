@@ -117,9 +117,32 @@ test = np.array([[1, 2, 3], [2, 3, 4], [5, 4, 3], [8, 7, 2]])
 print(test)
 print(tf.argmax(test, axis=0))
 print(tf.argmax(test, axis=1))
+
+# tf.where(条件语句，真返回A， 假返回B) 
+a = tf.constant([1, 2, 3, 1, 1])
+b = tf.constant([0, 1, 3, 4, 5])
+c = tf.where(tf.greater(a, b), a, b)
+print('c:', c)
  
+# np.random.RandomState.rand()
+rdm = np.random.RandomState(seed=1)
+a = rdm.rand()
+b = rdm.rand(2, 3)
+print('a:', a)
+print('b:', b)
 
+# np.vstack() 将两个数组按垂直方向叠加
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+c = np.vstack((a, b))
+print('c:\n', c)
 
-
-
-
+# np.mgrid[]  .ravel()   np.c_[]
+# np.mgrid[起始值： 结束值： 步长， ...]
+# x.ravel() 将x变为一维数组
+# np.c_[] 使返回的间隔值点配对， np.c_[数组1， 数组2， ...]
+x, y = np.mgrid[1:3:1, 2:4:0.5]
+grid = np.c_[x.ravel(), y.ravel()]
+print('x:', x)
+print('y:', y)
+print('grid:\n', grid)
