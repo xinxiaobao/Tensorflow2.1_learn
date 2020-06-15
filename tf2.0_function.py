@@ -144,5 +144,22 @@ print('c:\n', c)
 x, y = np.mgrid[1:3:1, 2:4:0.5]
 grid = np.c_[x.ravel(), y.ravel()]
 print('x:', x)
-print('y:', y)
+print('y:', y) 
 print('grid:\n', grid)
+
+
+# 损失函数 cross entropy
+loss_ce1 = tf.losses.categorical_crossentropy([1, 0], [0.6, 0.4])
+loss_ce2 = tf.losses.categorical_crossentropy([1, 0], [0.8, 0.2])
+print('loss_ce1:', loss_ce1)
+print('loss_ce2:', loss_ce2)
+
+# softmax 与交叉熵结合
+y_ = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1],[1, 0, 0], [0, 1, 0]])
+y = np.array([[12, 3, 2], [3, 10, 1], [1, 2, 5], [4, 6.5, 1.2], [3, 6, 1]])
+
+y_pro = tf.nn.softmax(y)
+loss_ce1 = tf.losses.categorical_crossentropy(y_, y_pro)
+loss_ce2 = tf.nn.softmax_cross_entropy_with_logits(y_, y)
+print('分步计算的结果：\n', loss_ce1)
+print('结合计算的结果: \n', loss_ce2)
